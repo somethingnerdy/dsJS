@@ -1,0 +1,24 @@
+{
+  "name": "data-structures-js",
+  "version": "1.0.0",
+  "description": "Data Structures in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github/somethingnerdy/dsJS"
+  },
+  "keywords": [
+    "data",
+    "structures",
+    "algorithms",
+    "javascript"
+  ],
+  "author": "Angel Rodriguez",
+  "license": "ISC",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  }
+}
