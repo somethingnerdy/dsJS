@@ -19,6 +19,11 @@
   "author": "Angel Rodriguez",
   "license": "ISC",
   "dependencies": {
-    "grunt": "^0.4.5"
+    "grunt": "^0.4.5",
+    "requirejs": "^2.1.22"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.12.0",
+    "grunt-jsdoc": "^1.1.0"
   }
 }
