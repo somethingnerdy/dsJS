@@ -20,6 +20,8 @@
   "license": "ISC",
   "dependencies": {
     "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-umd": "^2.3.5",
     "requirejs": "^2.1.22"
   },
   "devDependencies": {
