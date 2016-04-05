@@ -56,7 +56,7 @@ dsJS.Stack = function () {
         return this.top <= 0;
     };
     var show = function () {
-        if (window.console) {
+        if (console) {
             console.log(this.dataStore);
         }
     };

@@ -14,12 +14,13 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-umd');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-mocha-istanbul');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             preUMD: {
-                src: 'src/*.js',
+                src: ['src/_core.js', 'src/stack.js', 'src/queue.js'],
                 dest: 'dest/all.js'
             }
         },
@@ -45,10 +46,34 @@ module.exports = function (grunt) {
                 globalAlias: 'dsJS',
                 indent: 4
             }
+        },
+        mocha_istanbul: {
+            coveralls: {
+                src: ['test/*.js'],
+                options : {
+                    coverage: true,
+                    check : {
+                        lines:80,
+                        statements: 80
+                    },
+                    root: './',
+                    reportFormats: ['html','lcov']
+                }
+            }
+        },
+        istanbul_check_coverage: {
+            default: {
+                options: {
+                    coverageFolder: 'coverage*', // will check both coverage folders and merge the coverage results
+                    check: {
+                        lines: 80,
+                        statements: 80
+                    }
+                }
+            }
         }
     });
 
-
-
-    grunt.registerTask('default', ['concat:preUMD', 'umd']);
+    grunt.registerTask('default', ['concat:preUMD', 'umd', 'mocha_istanbul:coveralls']);
+    //grunt.registerTask('dev', ['jshint', ''])
 };
