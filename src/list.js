@@ -8,27 +8,16 @@
 /**
  * @name List
  * @constructor
- * @property listSize {Number} Number of elements in the list
- * @property position {Number} Current position in the list
- * @property dataStore {Array} Array to store a list of elements
  */
-function List() {
-    'use strict';
-    this.listSize = 0;
-    this.position = 0;
-    this.dataStore = [];
-}
-
-List.prototype = {
-    append: function (element) {
+dsJS.List = function () {
+    var append = function (element) {
         this.dataStore[this.listSize++] = element;
-    },
-    clear: function () {
-        //delete this.dataStore;
-        this.dataStore = [];
+    };
+    var clear = function () {
+        this.dataStore.length = 0;
         this.listSize = this.position = 0;
-    },
-    insert: function (element, after) {
+    };
+    var insert = function (element, after) {
         var insertPos = this.find(after);
         if (insertPos > -1) {
             this.dataStore.splice(insertPos + 1, 0, element);
@@ -36,16 +25,16 @@ List.prototype = {
             return true;
         }
         return false;
-    },
-    find: function (element) {
+    };
+    var find = function (element) {
         for (var i = 0, len = this.dataStore.length; i < len; i++) {
             if (this.dataStore[i] === element) {
                 return i;
             }
         }
         return -1;
-    },
-    contains: function (element) {
+    };
+    var contains = function (element) {
         for (var i = 0, len = this.dataStore.length; i < len; i++) {
             var currentPos = this.dataStore[i];
             if (this.dataStore[i] === element) {
@@ -53,8 +42,8 @@ List.prototype = {
             }
         }
         return false;
-    },
-    remove: function (element) {
+    };
+    var remove = function (element) {
         var location = this.find(element);
         if (location > -1) {
             this.dataStore.splice(location, 1);
@@ -62,36 +51,56 @@ List.prototype = {
             return true;
         }
         return false;
-    },
-    getCurrentPosition: function () {
+    };
+    var getCurrentPosition = function () {
         return this.position;
-    },
-    getElement: function () {
+    };
+    var getElement = function () {
         return this.dataStore[this.position];
-    },
-    front: function () {
+    };
+    var front = function () {
         this.position = 0;
-    },
-    end: function () {
+    };
+    var end = function () {
         this.position = this.listSize - 1;
-    },
-    previous: function () {
+    };
+    var previous = function () {
         if (this.position > 0) {
             --this.position;
         }
-    },
-    next: function () {
+    };
+    var next = function () {
         if (this.position < this.listSize - 1) {
             ++this.position;
         }
-    },
-    length: function () {
+    };
+    var length = function () {
         return this.listSize;
-    },
-    moveTo: function (position) {
+    };
+    var moveTo = function (position) {
         this.position = position;
-    },
-    toString: function () {
+    };
+    var toString = function () {
         return this.dataStore;
-    }
+    };
+    return {
+        listSize : 0,
+        position: 0,
+        dataStore: [],
+        append: append,
+        clear: clear,
+        insert: insert,
+        find: find,
+        contains: contains,
+        remove: remove,
+        getCurrentPosition: getCurrentPosition,
+        getElement: getElement,
+        front: front,
+        end: end,
+        previous: previous,
+        next: next,
+        length: length,
+        moveTo: moveTo,
+        toString: toString
+    };
 };
