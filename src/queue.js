@@ -1,76 +1,91 @@
 /**
- * @class Queue
- * @classdesc A Queue is a First-In First-Out (FIFO) data structure. Data is inserted at the end
- *            and are removed from the front. Queues are used to store data in the order in
- *            which they occur.
- * @constructor
+ * A Queue is a First-In First-Out (FIFO) data structure. Data is inserted at the end and are removed from the front.
+ * Queues are used to store data in the order in which they occur.
+ *
+ * @returns {{dataStore: Array, enqueue: Function, dequeue: Function, front: Function, back: Function, toString: Function, isEmpty: Function, length: Function}}
+ * @constructor dsJS.Queue
+ * @todo make the dataStore private
  */
 dsJS.Queue = function () {
     /**
-     * @property enqueue
-     * @description Pushes an element to the front of the queue
-     * @param {String | Number} element Element to store in the queue
+     * The Queue defined as an JS array
+     * @property dataStore
+     * @private
+     * @type {Array}
+     */
+    var dataStore = [];
+    /**
+     * Pushes an element to the front of the queue
+     * @function enqueue
+     * @memberof dsJS.Queue
+     * @param {mixed} element Element to store in the queue
      */
     var enqueue = function (element) {
-        this.dataStore.push(element);
+        dataStore.push(element);
     };
     /**
-     * @property dequeue
-     * @description
-     * @returns {T}
+     * Removes the first element in the queue
+     * @function dequeue
+     * @memberof dsJS.Queue
+     * @returns {mixed} The first element in the queue
      */
     var dequeue = function () {
-        if (this.dataStore.length > 0) {
-            return this.dataStore.shift();
+        if (dataStore.length > 0) {
+            return dataStore.shift();
         }
     };
     /**
-     * @property front
-     * @description
-     * @returns {*}
+     * Gives you the first element in the queue
+     * @function front
+     * @memberof dsJS.Queue
+     * @returns {*} The first element of the queue
      */
     var front = function () {
-        return this.dataStore[0];
+        return dataStore[0];
     };
     /**
-     * @property back
-     * @description
+     * Gives you the last element in the queue
+     * @function back
+     * @memberof dsJS.Queue
      * @returns {*}
      */
     var back = function () {
-        return this.dataStore[this.dataStore.length - 1];
+        return dataStore[dataStore.length - 1];
     };
     /**
-     * @property toString
-     * @description
-     * @returns {string}
+     * Convert the queue into a string
+     * @function toString
+     * @memberof dsJS.Queue
+     * @returns {string} the elements in the queue
      */
     var toString = function () {
         var string = '';
-        for (var i = 0, len = this.dataStore.length; i < len; i++) {
-            string += this.dataStore[i] + '\n';
+        for (var i = 0, len = dataStore.length; i < len; i++) {
+            string += dataStore[i] + '\n';
         }
         return string;
     };
     /**
-     * @property isEmpty
-     * @description Checks to see if the queue doesn't contain elements.
+     * Checks to see if the queue doesn't contain elements
+     * @function isEmpty
+     * @memberof dsJS.Queue
      * @returns {boolean} True, if there are elements in the stack. False, if the
      *                    queue is empty
      */
     var isEmpty = function () {
-        return this.dataStore.length === 0;
+        return dataStore.length === 0;
     };
     /**
-     * @property length
-     * @returns {*|j|i|o}
+     * Gives you the length of the queue
+     * @function length
+     * @memberof dsJS.Queue
+     * @returns {number} The amount of elements in the queue
      */
     var length = function () {
-        return this.dataStore.length;
+        return dataStore.length;
     };
-    /** @lends Queue */
+    /** @lends dsJS.Queue */
     return {
-        dataStore : [],
         enqueue : enqueue,
         dequeue : dequeue,
         front : front,

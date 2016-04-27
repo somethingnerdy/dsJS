@@ -1,7 +1,7 @@
 'use strict';
 /**
  * Top level namespace object
- * @name dsJS
+ * @namespace dsJS
  * @type {{}}
  */
 var dsJS = {};

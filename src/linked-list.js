@@ -1,6 +1,4 @@
-if (typeof define !== 'function') { var define = require('../node_modules/amdefine')(module); }
 
-define(function () {
     /**
      * @module Linked List
      * @description
@@ -58,4 +56,3 @@ define(function () {
             }
         }
     };
-});

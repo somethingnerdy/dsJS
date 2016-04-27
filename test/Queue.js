@@ -1,4 +1,4 @@
-var dsJS = require('../dest/all').Queue;
+var dsJS = require('../dest/dsjs').Queue;
 var should = require('should');
 var queue;
 

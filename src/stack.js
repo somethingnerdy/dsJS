@@ -1,80 +1,92 @@
 /**
- * @class Stack
- * @classdesc A Stack is a First-In Last-Out (FILO) data structure.
- * @constructor
+ * A Stack is a First-In Last-Out (FILO) data structure. Data is inserted in the front and removed from the end.
+ * A real world example of a stack would be a stack of trays.
+ * @returns {{dataStore: Array, top: number, push: Function, pop: Function, peek: Function, length: Function, clear: Function, isEmpty: Function, show: Function}}
+ * @constructor dsJS.Stack
  */
 dsJS.Stack = function () {
     /**
-     * @property push
-     * @description Pushes an element onto the top of the stack (dataStore).
-     *              This function is equivalent to JS's array.push()
+     * The dataStore is where the elements of the stack are stored.
+     * The current implementation is an array.
+     * @property dataStore
+     * @private
+     * @memberof dsJS.Stack
+     * @type {array}
+     */
+    var dataStore = [];
+    /**
+     * The top of the stack. Used as the index and length for methods in the Stack class
+     * @property top
+     * @private
+     * @memberof dsJS.Stack
+     * @type {number}
+     */
+    var top = 0;
+    /**
+     * Pushes an element onto the top of the stack (dataStore).
+     * This function is equivalent to JS's array.push()
+     * @function push
+     * @memberof dsJS.Stack
      * @param {String | Number} element Value to push onto the stack.
      */
     var push = function (element) {
-        this.dataStore[this.top++] = element;
+        dataStore[top++] = element;
     };
     /**
-     * @property pop
-     * @description Removes the element at the top of the stack
+     * Removes the element at the top of the stack
+     * @function pop
+     * @memberof dsJS.Stack
      * @returns {*} The top element of the stack. If the stack/dataStore is empty
      *              it will return undefined.
      */
     var pop = function () {
-        return this.dataStore[--this.top];
+        return dataStore[--top];
     };
     /**
-     * @property peek
-     * @description Returns the element at the top of the stack without popping it.
+     * Get the element at the top of the stack without popping it.
+     * @function peek
+     * @memberof dsJS.Stack
      * @returns {*} The element at the top of the stack. Undefined if the stack is empty
      */
     var peek = function () {
-        return this.dataStore[this.top - 1];
+        return dataStore[top - 1];
     };
     /**
-     * @property length
-     * @description
-     * @returns {number}
+     * The length of the stack
+     * @function length
+     * @memberof dsJS.Stack
+     * @returns {number} The length of the stack
      */
     var length = function () {
-        return this.top;
+        return top;
     };
     /**
-     * @property clear
-     * @description Clears the stack. Sets the top and the length of dataStore to 0
+     * Clears the stack. Sets the top and the length of dataStore to 0
+     * @function clear
+     * @memberof dsJS.Stack
      */
     var clear = function () {
-        this.top = 0;
-        this.dataStore.length = 0;
+        top = 0;
+        dataStore.length = 0;
     };
     /**
-     * @property isEmpty
-     * @description Checks to see if the stack doesnt contain elements.
+     * Checks to see if the stack doesnt contain elements.
+     * @function isEmpty
+     * @memberof dsJS.Stack
      * @returns {boolean} True, if there are elements in the stack. False, if the
      *                    stack is empty
      */
     var isEmpty = function () {
-        return this.top <= 0;
+        return top <= 0;
     };
     var show = function () {
         if (console) {
-            console.log(this.dataStore);
+            console.log(dataStore);
         }
     };
 
-    /** @lends Stack */
+    /** @lends dsJS.Stack */
     return {
-        /**
-         * @property dataStore
-         * @description The dataStore is where the elements of the stack are stored.
-         *              The current implementation is an array.
-         */
-        dataStore: [],
-        /**
-         * @property top
-         * @description The top of the stack. Used as the index and length for methods
-         *              in the Stack class.
-         */
-        top: 0,
         push : push,
         pop : pop,
         peek : peek,

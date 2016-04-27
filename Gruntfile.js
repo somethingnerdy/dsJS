@@ -15,13 +15,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-umd');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-mocha-istanbul');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             preUMD: {
-                src: ['src/_core.js', 'src/stack.js', 'src/queue.js'],
-                dest: 'dest/all.js'
+                src: ['src/_core.js', 'src/stack.js', 'src/queue.js', 'src/dictionary.js'],
+                dest: 'dest/dsjs.js'
             }
         },
         jshint: {
@@ -34,17 +35,25 @@ module.exports = function (grunt) {
                 }
             },
             dist: {
-                src: "dist/symPerformance.js",
+                src: "dist/dsjs.js",
                 options: srcHintOptions
             }
         },
         umd: {
             'default': {
-                src: 'dest/all.js',
-                dest: 'dest/all.js',
+                src: 'dest/dsjs.js',
+                dest: 'dest/dsjs.js',
                 objectToExport: 'dsJS',
                 globalAlias: 'dsJS',
                 indent: 4
+            }
+        },
+        jsdoc:{
+            dist: {
+                src:['./dest/dsjs.js'],
+                options: {
+                    destination: 'doc'
+                }
             }
         },
         mocha_istanbul: {
@@ -74,6 +83,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['concat:preUMD', 'umd', 'mocha_istanbul:coveralls']);
+    grunt.registerTask('default', ['concat:preUMD', 'umd', 'jsdoc','mocha_istanbul:coveralls' ]);
     //grunt.registerTask('dev', ['jshint', ''])
 };
